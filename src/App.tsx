@@ -5,7 +5,7 @@ const App = () => {
 
     useEffect(() => {
         const fromLS = localStorage.getItem("test")
-        console.log(fromLS)
+        console.log(fromLS, 'fromLS')
         if (fromLS) {
             const newMass = fromLS && JSON.parse(fromLS)
             const sortMass = newMass.sort((a: any, b: any) => a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1)
