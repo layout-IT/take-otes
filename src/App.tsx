@@ -5,9 +5,11 @@ const App = () => {
 
     useEffect(() => {
         const fromLS = localStorage.getItem("test")
-        const newMass = fromLS && JSON.parse(fromLS)
-        const sortMass = newMass.sort((a: any, b: any) => a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1)
-        setMass(sortMass)
+        if (fromLS) {
+            const newMass = fromLS && JSON.parse(fromLS)
+            const sortMass = newMass.sort((a: any, b: any) => a.text.toLowerCase() > b.text.toLowerCase() ? 1 : -1)
+            setMass(sortMass)
+        }
     }, [])
 
     const [id, setId] = useState(0)
