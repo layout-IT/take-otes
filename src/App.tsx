@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import './App.scss'
 
 type objType = {
@@ -24,6 +24,7 @@ const App = () => {
     const [showDaneModal, setShowDaneModal] = useState(false)
     const [editTextarea, setEditTextarea] = useState(false)
     const [showMass, setShowMass] = useState(false)
+    const [showSetMass, setShowSetMass] = useState(false)
 
     const [inputValue, setInputValue] = useState('')
     const [textareaValue, setTextareaValue] = useState('')
@@ -71,6 +72,9 @@ const App = () => {
         setTextareaValue('')
     }
 
+    const addMassImport = (e:  React.ChangeEvent<HTMLTextAreaElement>) => {
+        setMass(JSON.parse(e.currentTarget.value))
+    }
 
     const OneditInput = (e: React.MouseEvent<HTMLLIElement>, id: number, text: string) => {
         setEditTextarea(false)
@@ -130,11 +134,19 @@ const App = () => {
                 <div className='buttons'>
                     <button className='button' onClick={save}>save</button>
                     <button className='button' onClick={() => setShowMass(true)}>showMass</button>
+                    <button className='button' onClick={() => setShowSetMass(true)}>setMass</button>
                 </div>
                 {showMass && (
                     <div className='showModal'>
                         <span>{JSON.stringify(mass)}</span>
                         <button onClick={() => setShowMass(false)} className='button'>Ok</button>
+                    </div>
+
+                )}
+                {showSetMass && (
+                    <div className='confirm'>
+                        <textarea onChange={addMassImport}></textarea>
+                        <button onClick={() => setShowSetMass(false)} className='button'>Ok</button>
                     </div>
 
                 )}
