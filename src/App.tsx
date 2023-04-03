@@ -65,11 +65,13 @@ const App = () => {
                 }
             }
         }
-
-        const newMass = [...mass, {id: maxId + 1, text: inputValue, discrption: textareaValue}]
-        setMass(newMass)
-        setInputValue('')
-        setTextareaValue('')
+        if(inputValue.trim() && textareaValue.trim()) {
+            const newMass = [...mass, {id: maxId + 1, text: inputValue, discrption: textareaValue}]
+            setMass(newMass)
+            setInputValue('')
+            setTextareaValue('')
+        }
+        return
     }
 
     const addMassImport = (e:  React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -133,7 +135,7 @@ const App = () => {
                 <textarea className='textarea' value={textareaValue} onChange={(e) => onTextarea(e)}/>
 
                 <div className='buttons'>
-                    <button className='button' onClick={save}>Сохранить</button>
+                    <button className='button' onClick={save}>Сохранить в конспект</button>
                     <button className='button' onClick={() => setShowMass(true)}>показать конспект в JSON</button>
                     <button className='button' onClick={() => setShowSetMass(true)}>Вставить в конспект JSON</button>
                 </div>
@@ -141,7 +143,7 @@ const App = () => {
                 {showMass && (
                     <div className='showModal'>
                         <span>{JSON.stringify(mass)}</span>
-                        <button onClick={() => setShowMass(false)} className='button'>Ok</button>
+                        <button onClick={() => setShowMass(false)} className='button'>Все, посмотрел...</button>
                     </div>
 
                 )}
