@@ -28,6 +28,7 @@ const App = () => {
 
     const [inputValue, setInputValue] = useState('')
     const [textareaValue, setTextareaValue] = useState('')
+    const [textForDelete, setTextForDelete] = useState('')
 
     const [mass, setMass] = useState<objType[]>([
         {id: 1, text: 'в', discrption: 'discrption'}
@@ -209,13 +210,14 @@ const App = () => {
                             onClick={() => {
                                 setId(row.id)
                                 setConfirm(true)
+                                setTextForDelete(row.text)
                             }}
                             className='button'>X
                         </button>
                     </li>
                     {confirm && (
                         <div className='showModalForDelete'>
-                            <span>Точно удалить <br/> "{row.text}" ?</span>
+                            <span>Точно удалить <br/> "{textForDelete}" ?</span>
                             <div className='buttons'>
                                 <button onClick={() => deleteMass(id)} className='button'>Ok</button>
                                 <button onClick={() => setConfirm(false)} className='button'>Отмена</button>
