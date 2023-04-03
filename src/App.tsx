@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './App.scss'
 
 type objType = {
@@ -148,10 +148,10 @@ const App = () => {
 
                 {showSetMass && (
                     <div className='showModalForDelete'>
-                        <textarea onChange={addMassImport} placeholder={'Только JSON!!!'} className='setTextarea'></textarea>
+                        <textarea onChange={addMassImport} placeholder={'Только JSON!!!'} className='setTextarea'>{textareaValue}</textarea>
                         <div className='buttons'>
                             <button
-                                onClick={(e) => {
+                                onClick={() => {
                                     setMass(JSON.parse(textareaValue))
                                     setShowSetMass(false)
                                     setTextareaValue('')
@@ -200,7 +200,7 @@ const App = () => {
                                 onChange={(e) => onTextarea(e)}
                                 onBlur={(e) => textAreaBlur(e)}
                             />
-                            : <li onClick={(e) => OneditTextarea(row.id, row.discrption)}>{row.discrption}</li>
+                            : <li onClick={() => OneditTextarea(row.id, row.discrption)}>{row.discrption}</li>
                     }
                     <li>
                         <button
