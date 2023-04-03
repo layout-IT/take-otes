@@ -144,7 +144,7 @@ const App = () => {
 
                 )}
                 {showSetMass && (
-                    <div className='showDaneModal'>
+                    <div className='showModalForDelete'>
                         <textarea onChange={addMassImport}></textarea>
                         <button onClick={() => setShowSetMass(false)} className='button'>Ok</button>
                     </div>
