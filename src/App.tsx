@@ -73,7 +73,7 @@ const App = () => {
     }
 
     const addMassImport = (e:  React.ChangeEvent<HTMLTextAreaElement>) => {
-        setMass(JSON.parse(e.currentTarget.value))
+        setTextareaValue(e.currentTarget.value)
     }
 
     const OneditInput = (e: React.MouseEvent<HTMLLIElement>, id: number, text: string) => {
@@ -129,13 +129,15 @@ const App = () => {
                     </button>
                     <input className='input' value={inputValue} onChange={(e) => onInput(e)} type="text"/>
                 </div>
+
                 <textarea className='textarea' value={textareaValue} onChange={(e) => onTextarea(e)}/>
 
                 <div className='buttons'>
-                    <button className='button' onClick={save}>save</button>
-                    <button className='button' onClick={() => setShowMass(true)}>showMass</button>
-                    <button className='button' onClick={() => setShowSetMass(true)}>setMass</button>
+                    <button className='button' onClick={save}>Сохранить</button>
+                    <button className='button' onClick={() => setShowMass(true)}>показать конспект в JSON</button>
+                    <button className='button' onClick={() => setShowSetMass(true)}>Вставить в конспект JSON</button>
                 </div>
+
                 {showMass && (
                     <div className='showModal'>
                         <span>{JSON.stringify(mass)}</span>
@@ -143,13 +145,33 @@ const App = () => {
                     </div>
 
                 )}
+
                 {showSetMass && (
                     <div className='showModalForDelete'>
-                        <textarea onChange={addMassImport}></textarea>
-                        <button onClick={() => setShowSetMass(false)} className='button'>Ok</button>
+                        <textarea onChange={addMassImport} placeholder={'Только JSON!!!'} className='setTextarea'></textarea>
+                        <div className='buttons'>
+                            <button
+                                onClick={(e) => {
+                                    setMass(JSON.parse(textareaValue))
+                                    setShowSetMass(false)
+                                    setTextareaValue('')
+                            }}
+                                className='button'
+                            >Ok
+                            </button>
+                            <button
+                                onClick={() => {
+                                setShowSetMass(false)
+                                setTextareaValue('')
+                            }}
+                                className='button'
+                            >отмена
+                            </button>
+                        </div>
                     </div>
 
                 )}
+
                 {showDaneModal && (
                     <div className='showDaneModal'>
                         <span>Успешно сохранено</span>
