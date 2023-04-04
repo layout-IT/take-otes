@@ -67,7 +67,7 @@ const App = () => {
             }
         }
         if(inputValue.trim() && textareaValue.trim()) {
-            const newMass = [...mass, {id: maxId + 1, text: inputValue, discrption: textareaValue}]
+            const newMass = [{id: maxId + 1, text: inputValue, discrption: textareaValue}, ...mass]
             setMass(newMass)
             setInputValue('')
             setTextareaValue('')

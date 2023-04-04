@@ -161,9 +161,8 @@
     z-index: 1;
     padding: 50px;
     box-sizing: border-box;
-    overflow: hidden;
     transition: all 0.3s ease;
-
+    overflow: auto;
     span {
       margin-bottom: 50px;
     }
